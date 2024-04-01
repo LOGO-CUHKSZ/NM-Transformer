@@ -41,7 +41,7 @@ class CustomMultiHeadAttention(nn.Module):
         else:
                 K_y_reshaped = K_y.repeat(1, self.neg_sample_num, 1, 1).view(b//bs,bs,m,d)#.transpose(0,1)
 
-                Q_x_expanded = (Q_x.view(bs, b//bs, m, d)).transpose(0, 1)# (b//bs, b, m, d) 这一步的合法性最关键
+                Q_x_expanded = (Q_x.view(bs, b//bs, m, d)).transpose(0, 1)# (b//bs, b, m, d) 
 
 
                 attention_scores_xy = torch.matmul(Q_x_expanded, K_y_reshaped.transpose(2, 3))# (b//bs, bs, m, d)  * (b//bs, bs, d, m) 
